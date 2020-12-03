@@ -35,10 +35,10 @@
     <ClInclude Include="Gestion_Personnel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Gestion_Stock.h">
+    <ClInclude Include="Gestion_Client.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Gestion_Client.h">
+    <ClInclude Include="Gestion_Stock.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -61,10 +61,10 @@
     <ClCompile Include="Gestion_Personnel.cpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
-    <ClCompile Include="Gestion_Stock.cpp">
+    <ClCompile Include="Gestion_Client.cpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
-    <ClCompile Include="Gestion_Client.cpp">
+    <ClCompile Include="Gestion_Stock.cpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
   </ItemGroup>

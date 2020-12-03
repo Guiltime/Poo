@@ -55,19 +55,6 @@ namespace Poo {
 
 
 	private: System::Windows::Forms::Button^ Statistiques;
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.

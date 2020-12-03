@@ -256,6 +256,7 @@ namespace Poo {
 			this->Main->Size = System::Drawing::Size(1228, 537);
 			this->Main->TabIndex = 1;
 			this->Main->TabStop = false;
+			this->Main->Enter += gcnew System::EventHandler(this, &Gestion_Client::Main_Enter);
 			// 
 			// Supp
 			// 
@@ -1106,7 +1107,7 @@ namespace Poo {
 	
 	private: System::Void Voir_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (X == 1) {
-			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+		if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 		String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 		SqlConnection^ conDataBase = gcnew SqlConnection(constring);
 		
@@ -1290,5 +1291,7 @@ private: System::Void textBox5_TextChanged(System::Object^ sender, System::Event
 
 
 
+private: System::Void Main_Enter(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
