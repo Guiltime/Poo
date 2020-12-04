@@ -78,6 +78,7 @@ namespace Poo {
 	private: System::Windows::Forms::Label^ label23;
 	private: System::Windows::Forms::TextBox^ textBox22;
 	private: System::Windows::Forms::Button^ Voir2;
+	private: System::Windows::Forms::Button^ Vider;
 
 	public:
 	private: System::Windows::Forms::BindingSource^ bindingSource1;
@@ -210,6 +211,7 @@ namespace Poo {
 			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
 			this->dataModif = (gcnew System::Windows::Forms::DataGridView());
 			this->bindingSource4 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->Vider = (gcnew System::Windows::Forms::Button());
 			this->Main->SuspendLayout();
 			this->BoxAj->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataAj))->BeginInit();
@@ -238,6 +240,7 @@ namespace Poo {
 			// 
 			// Main
 			// 
+			this->Main->Controls->Add(this->Vider);
 			this->Main->Controls->Add(this->Supp);
 			this->Main->Controls->Add(this->Actualiser4);
 			this->Main->Controls->Add(this->Modif);
@@ -270,7 +273,7 @@ namespace Poo {
 			// 
 			// Actualiser4
 			// 
-			this->Actualiser4->Location = System::Drawing::Point(1017, 340);
+			this->Actualiser4->Location = System::Drawing::Point(1086, 340);
 			this->Actualiser4->Name = L"Actualiser4";
 			this->Actualiser4->Size = System::Drawing::Size(101, 48);
 			this->Actualiser4->TabIndex = 16;
@@ -290,7 +293,7 @@ namespace Poo {
 			// 
 			// Actualiser3
 			// 
-			this->Actualiser3->Location = System::Drawing::Point(1017, 340);
+			this->Actualiser3->Location = System::Drawing::Point(1086, 340);
 			this->Actualiser3->Name = L"Actualiser3";
 			this->Actualiser3->Size = System::Drawing::Size(101, 48);
 			this->Actualiser3->TabIndex = 14;
@@ -310,7 +313,7 @@ namespace Poo {
 			// 
 			// Actualiser2
 			// 
-			this->Actualiser2->Location = System::Drawing::Point(1017, 340);
+			this->Actualiser2->Location = System::Drawing::Point(1086, 340);
 			this->Actualiser2->Name = L"Actualiser2";
 			this->Actualiser2->Size = System::Drawing::Size(101, 48);
 			this->Actualiser2->TabIndex = 13;
@@ -662,7 +665,7 @@ namespace Poo {
 			// 
 			// Actualiser1
 			// 
-			this->Actualiser1->Location = System::Drawing::Point(1017, 340);
+			this->Actualiser1->Location = System::Drawing::Point(1086, 340);
 			this->Actualiser1->Name = L"Actualiser1";
 			this->Actualiser1->Size = System::Drawing::Size(101, 48);
 			this->Actualiser1->TabIndex = 3;
@@ -908,6 +911,16 @@ namespace Poo {
 			this->dataModif->Size = System::Drawing::Size(896, 326);
 			this->dataModif->TabIndex = 0;
 			// 
+			// Vider
+			// 
+			this->Vider->Location = System::Drawing::Point(938, 340);
+			this->Vider->Name = L"Vider";
+			this->Vider->Size = System::Drawing::Size(114, 48);
+			this->Vider->TabIndex = 29;
+			this->Vider->Text = L"Vider";
+			this->Vider->UseVisualStyleBackColor = true;
+			this->Vider->Click += gcnew System::EventHandler(this, &Gestion_Client::Vider_Click);
+			// 
 			// Gestion_Client
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -1000,7 +1013,30 @@ namespace Poo {
 		bindingSource4->DataSource = data;
 		dataSupp->DataSource = bindingSource4;
 	}
-	
+	private: System::Void Vider_Click(System::Object^ sender, System::EventArgs^ e) {
+		textBox1->Text = "";
+		textBox2->Text = "";
+		textBox3->Text = "";
+		textBox4->Text = "";
+		textBox5->Text = "";
+		textBox6->Text = "";
+		textBox7->Text = "";
+		textBox8->Text = "";
+		textBox9->Text = "";
+		textBox10->Text = "";
+		textBox11->Text = "";
+		textBox12->Text = "";
+		textBox13->Text = "";
+		textBox14->Text = "";
+		textBox15->Text = "";
+		textBox16->Text = "";
+		textBox17->Text = "";
+		textBox18->Text = "";
+		textBox19->Text = "";
+		textBox20->Text = "";
+		textBox21->Text = "";
+		textBox22->Text = "";
+	}
 	private: System::Void Annuler_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 			this->Close();
@@ -1039,37 +1075,63 @@ namespace Poo {
 	}
 
 	private: System::Void ButtonAj_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (W == 1) {
 			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
 
 				String^ nom = textBox3->Text;
 				String^ prenom = textBox4->Text;
-				String^ adresse_liv = textBox8->Text;
-				String^ adresse_fact = textBox6->Text;
 				String^ date_anniv = textBox5->Text;
 				String^ date_achat = textBox7->Text;
+				String^ adresseLiv = textBox8->Text;
+				String^ adresseFac = textBox6->Text;
+
+					if (adresseFac->StartsWith("Alger,") || adresseFac->StartsWith("Oran,") || adresseFac->StartsWith("Constantine,") || adresseFac->StartsWith("Annaba,") || adresseFac->StartsWith("Blida,") ||
+						adresseFac->StartsWith("Batna,") || adresseFac->StartsWith("Djelfa,") || adresseFac->StartsWith("Setif,") || adresseFac->StartsWith("Sidi bel Abbes,") || adresseFac->StartsWith("Biskra,") ||
+						adresseFac->StartsWith("Tebessa,") || adresseFac->StartsWith("El Oued,") || adresseFac->StartsWith("Skikda,") || adresseFac->StartsWith("Tiaret,") || adresseFac->StartsWith("Bejaia,") ||
+						adresseFac->StartsWith("Tlemcen,") || adresseFac->StartsWith("Ouargla,") || adresseFac->StartsWith("Bechar,") || adresseFac->StartsWith("Mostaganem,") || adresseFac->StartsWith("Bordj Bou Arreridj,") ||
+						adresseFac->StartsWith("Chlef,") || adresseFac->StartsWith("Souk Ahras,") || adresseFac->StartsWith("Medea,") || adresseFac->StartsWith("El Eulma,") || adresseFac->StartsWith("Touggourt,") ||
+						adresseFac->StartsWith("Ghardaia,") || adresseFac->StartsWith("Saida,") || adresseFac->StartsWith("Laghouat,") || adresseFac->StartsWith("M'Sila,") || adresseFac->StartsWith("Jijel,") ||
+						adresseFac->StartsWith("Relizane,") || adresseFac->StartsWith("Guelma,") || adresseFac->StartsWith("Ain Beida,") || adresseFac->StartsWith("Khenchela,") || adresseFac->StartsWith("Bousaada,") ||
+						adresseFac->StartsWith("Mascara,") || adresseFac->StartsWith("Tizi Ouzou,")) {
+
+						if (adresseLiv->StartsWith("Alger,") || adresseLiv->StartsWith("Oran,") || adresseLiv->StartsWith("Constantine,") || adresseLiv->StartsWith("Annaba,") || adresseLiv->StartsWith("Blida,") ||
+							adresseLiv->StartsWith("Batna,") || adresseLiv->StartsWith("Djelfa,") || adresseLiv->StartsWith("Setif,") || adresseLiv->StartsWith("Sidi bel Abbes,") || adresseLiv->StartsWith("Biskra,") ||
+							adresseLiv->StartsWith("Tebessa,") || adresseLiv->StartsWith("El Oued,") || adresseLiv->StartsWith("Skikda,") || adresseLiv->StartsWith("Tiaret,") || adresseLiv->StartsWith("Bejaia,") ||
+							adresseLiv->StartsWith("Tlemcen,") || adresseLiv->StartsWith("Ouargla,") || adresseLiv->StartsWith("Bechar,") || adresseLiv->StartsWith("Mostaganem,") || adresseLiv->StartsWith("Bordj Bou Arreridj,") ||
+							adresseLiv->StartsWith("Chlef,") || adresseLiv->StartsWith("Souk Ahras,") || adresseLiv->StartsWith("Medea,") || adresseLiv->StartsWith("El Eulma,") || adresseLiv->StartsWith("Touggourt,") ||
+							adresseLiv->StartsWith("Ghardaia,") || adresseLiv->StartsWith("Saida,") || adresseLiv->StartsWith("Laghouat,") || adresseLiv->StartsWith("M'Sila,") || adresseLiv->StartsWith("Jijel,") ||
+							adresseLiv->StartsWith("Relizane,") || adresseLiv->StartsWith("Guelma,") || adresseLiv->StartsWith("Ain Beida,") || adresseLiv->StartsWith("Khenchela,") || adresseLiv->StartsWith("Bousaada,") ||
+							adresseLiv->StartsWith("Mascara,") || adresseLiv->StartsWith("Tizi Ouzou,")) {
 
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT INTO Client (Nom_client,Prenom_client,Date_naissance,Date_premier_achat,Adresse_Facturation,Adresse_Livraison) VALUES('" + nom + "', '" + prenom + "', '" + date_anniv + "', '" + date_achat + "', '" + adresse_fact + "', '" + adresse_liv + "'); ", conDataBase);
-				SqlDataReader^ myReader;
-				try {
+							SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT INTO Client (Nom_client,Prenom_client,Date_naissance,Date_premier_achat,Adresse_Facturation,Adresse_Livraison) VALUES('" + nom + "', '" + prenom + "', '" + date_anniv + "', '" + date_achat + "', '" + adresseFac + "', '" + adresseLiv + "'); ", conDataBase);
+							SqlDataReader^ myReader;
+							try {
 
-					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
-					MessageBox::Show("Client ajouté au serveur !");
-					conDataBase->Close();
-				}
-				catch (Exception^ ex) {
+								conDataBase->Open();
+								myReader = cmdDataBase->ExecuteReader();
+								MessageBox::Show("Client ajouté au serveur !");
+								conDataBase->Close();
+							}
+							catch (Exception^ ex) {
 
-					MessageBox::Show(ex->Message);
+								MessageBox::Show(ex->Message);
 
-				}
+							}
+						}
+						else {
+							MessageBox::Show("Adresse invalide !");
+						}
+					}
+					else {
+						MessageBox::Show("Adresse invalide !");
+					}
+				
 			}
 			else {
+
 			}
-		}
 	}
 	
 	private: System::Void Modif_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1293,5 +1355,6 @@ private: System::Void textBox5_TextChanged(System::Object^ sender, System::Event
 
 private: System::Void Main_Enter(System::Object^ sender, System::EventArgs^ e) {
 }
+
 };
 }

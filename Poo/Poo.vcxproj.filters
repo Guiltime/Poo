@@ -41,6 +41,12 @@
     <ClInclude Include="Gestion_Stock.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Gestion_Statistique.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Simul.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Poo.cpp">
@@ -66,6 +72,12 @@
     </ClCompile>
     <ClCompile Include="Gestion_Stock.cpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
+    <ClCompile Include="Gestion_Statistique.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Simul.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

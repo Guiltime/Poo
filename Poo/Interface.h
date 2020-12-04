@@ -3,6 +3,7 @@
 #include "Gestion_Commande.h"
 #include "Gestion_Personnel.h"
 #include "Gestion_Stock.h"
+#include "Gestion_Statistique.h"
 
 
 
@@ -193,7 +194,6 @@ namespace Poo {
 			this->MaximumSize = System::Drawing::Size(1491, 653);
 			this->MinimumSize = System::Drawing::Size(1491, 653);
 			this->Name = L"Interface";
-			this->Text = L"Interface";
 			this->Load += gcnew System::EventHandler(this, &Interface::Interface_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -219,7 +219,8 @@ namespace Poo {
 			p->Show();
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+			Gestion_Statistique^ p = gcnew Gestion_Statistique();
+			p->Show();
 	}
 private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 }

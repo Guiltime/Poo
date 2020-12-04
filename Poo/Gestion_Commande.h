@@ -24,18 +24,7 @@ namespace Poo {
 
 
 
-
-
-
-
-
-
 	private: System::Windows::Forms::TextBox^ textBox3;
-
-
-
-
-
 
 
 
@@ -117,6 +106,25 @@ namespace Poo {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::TextBox^ textBox15;
 	private: System::Windows::Forms::Button^ Voir1;
+	private: System::Windows::Forms::Button^ Supp;
+	private: System::Windows::Forms::Button^ Vider4;
+	private: System::Windows::Forms::Button^ Actualiser4;
+	private: System::Windows::Forms::GroupBox^ boxSupp;
+	private: System::Windows::Forms::DataGridView^ dataSupp;
+
+	private: System::Windows::Forms::BindingSource^ bindingSource4;
+
+
+	private: System::Windows::Forms::Label^ label27;
+	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::TextBox^ textBox28;
+	private: System::Windows::Forms::TextBox^ textBox17;
+	private: System::Windows::Forms::Button^ Supp2;
+	private: System::Windows::Forms::Label^ label31;
+	private: System::Windows::Forms::Label^ label30;
+	private: System::Windows::Forms::TextBox^ textBox29;
+	private: System::Windows::Forms::Label^ label29;
+	private: System::Windows::Forms::Label^ label28;
 
 	private: System::Windows::Forms::GroupBox^ boxAff;
 	public:
@@ -173,6 +181,8 @@ namespace Poo {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Gestion_Commande::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Main = (gcnew System::Windows::Forms::GroupBox());
+			this->Vider4 = (gcnew System::Windows::Forms::Button());
+			this->Actualiser4 = (gcnew System::Windows::Forms::Button());
 			this->Modif = (gcnew System::Windows::Forms::Button());
 			this->Vider3 = (gcnew System::Windows::Forms::Button());
 			this->Actualiser3 = (gcnew System::Windows::Forms::Button());
@@ -214,6 +224,19 @@ namespace Poo {
 			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
 			this->dataAjj = (gcnew System::Windows::Forms::DataGridView());
+			this->boxSupp = (gcnew System::Windows::Forms::GroupBox());
+			this->Supp2 = (gcnew System::Windows::Forms::Button());
+			this->label31 = (gcnew System::Windows::Forms::Label());
+			this->label30 = (gcnew System::Windows::Forms::Label());
+			this->textBox29 = (gcnew System::Windows::Forms::TextBox());
+			this->label29 = (gcnew System::Windows::Forms::Label());
+			this->label28 = (gcnew System::Windows::Forms::Label());
+			this->Supp = (gcnew System::Windows::Forms::Button());
+			this->label27 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->textBox28 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox17 = (gcnew System::Windows::Forms::TextBox());
+			this->dataSupp = (gcnew System::Windows::Forms::DataGridView());
 			this->Options = (gcnew System::Windows::Forms::GroupBox());
 			this->Supprimer = (gcnew System::Windows::Forms::RadioButton());
 			this->Modifier = (gcnew System::Windows::Forms::RadioButton());
@@ -251,17 +274,21 @@ namespace Poo {
 			this->Voir1 = (gcnew System::Windows::Forms::Button());
 			this->dataModif = (gcnew System::Windows::Forms::DataGridView());
 			this->bindingSource3 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->bindingSource4 = (gcnew System::Windows::Forms::BindingSource(this->components));
 			this->Main->SuspendLayout();
 			this->boxAff->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataAff))->BeginInit();
 			this->boxAjj->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataAjj))->BeginInit();
+			this->boxSupp->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataSupp))->BeginInit();
 			this->Options->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource2))->BeginInit();
 			this->boxModif->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataModif))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -276,6 +303,8 @@ namespace Poo {
 			// 
 			// Main
 			// 
+			this->Main->Controls->Add(this->Vider4);
+			this->Main->Controls->Add(this->Actualiser4);
 			this->Main->Controls->Add(this->Modif);
 			this->Main->Controls->Add(this->Vider3);
 			this->Main->Controls->Add(this->Actualiser3);
@@ -286,6 +315,7 @@ namespace Poo {
 			this->Main->Controls->Add(this->Actualiser1);
 			this->Main->Controls->Add(this->boxAff);
 			this->Main->Controls->Add(this->boxAjj);
+			this->Main->Controls->Add(this->boxSupp);
 			this->Main->Controls->Add(this->Options);
 			this->Main->Controls->Add(this->Annuler);
 			this->Main->Controls->Add(this->Aff);
@@ -295,6 +325,26 @@ namespace Poo {
 			this->Main->TabIndex = 1;
 			this->Main->TabStop = false;
 			this->Main->Enter += gcnew System::EventHandler(this, &Gestion_Commande::Main_Enter);
+			// 
+			// Vider4
+			// 
+			this->Vider4->Location = System::Drawing::Point(944, 394);
+			this->Vider4->Name = L"Vider4";
+			this->Vider4->Size = System::Drawing::Size(124, 49);
+			this->Vider4->TabIndex = 34;
+			this->Vider4->Text = L"Vider";
+			this->Vider4->UseVisualStyleBackColor = true;
+			this->Vider4->Click += gcnew System::EventHandler(this, &Gestion_Commande::Vider4_Click);
+			// 
+			// Actualiser4
+			// 
+			this->Actualiser4->Location = System::Drawing::Point(1109, 394);
+			this->Actualiser4->Name = L"Actualiser4";
+			this->Actualiser4->Size = System::Drawing::Size(125, 47);
+			this->Actualiser4->TabIndex = 33;
+			this->Actualiser4->Text = L"Actualiser";
+			this->Actualiser4->UseVisualStyleBackColor = true;
+			this->Actualiser4->Click += gcnew System::EventHandler(this, &Gestion_Commande::Actualiser4_Click);
 			// 
 			// Modif
 			// 
@@ -684,6 +734,133 @@ namespace Poo {
 			this->dataAjj->Size = System::Drawing::Size(891, 305);
 			this->dataAjj->TabIndex = 0;
 			// 
+			// boxSupp
+			// 
+			this->boxSupp->Controls->Add(this->Supp2);
+			this->boxSupp->Controls->Add(this->label31);
+			this->boxSupp->Controls->Add(this->label30);
+			this->boxSupp->Controls->Add(this->textBox29);
+			this->boxSupp->Controls->Add(this->label29);
+			this->boxSupp->Controls->Add(this->label28);
+			this->boxSupp->Controls->Add(this->Supp);
+			this->boxSupp->Controls->Add(this->label27);
+			this->boxSupp->Controls->Add(this->label16);
+			this->boxSupp->Controls->Add(this->textBox28);
+			this->boxSupp->Controls->Add(this->textBox17);
+			this->boxSupp->Controls->Add(this->dataSupp);
+			this->boxSupp->Location = System::Drawing::Point(0, 0);
+			this->boxSupp->Name = L"boxSupp";
+			this->boxSupp->Size = System::Drawing::Size(908, 566);
+			this->boxSupp->TabIndex = 69;
+			this->boxSupp->TabStop = false;
+			// 
+			// Supp2
+			// 
+			this->Supp2->Location = System::Drawing::Point(727, 367);
+			this->Supp2->Name = L"Supp2";
+			this->Supp2->Size = System::Drawing::Size(121, 49);
+			this->Supp2->TabIndex = 41;
+			this->Supp2->Text = L"Supprimer";
+			this->Supp2->UseVisualStyleBackColor = true;
+			this->Supp2->Click += gcnew System::EventHandler(this, &Gestion_Commande::Supp2_Click);
+			// 
+			// label31
+			// 
+			this->label31->AutoSize = true;
+			this->label31->Location = System::Drawing::Point(13, 329);
+			this->label31->Name = L"label31";
+			this->label31->Size = System::Drawing::Size(182, 17);
+			this->label31->TabIndex = 40;
+			this->label31->Text = L"Supprimer une commande :";
+			// 
+			// label30
+			// 
+			this->label30->AutoSize = true;
+			this->label30->Location = System::Drawing::Point(13, 367);
+			this->label30->Name = L"label30";
+			this->label30->Size = System::Drawing::Size(111, 17);
+			this->label30->TabIndex = 39;
+			this->label30->Text = L"Ref commande :";
+			// 
+			// textBox29
+			// 
+			this->textBox29->Location = System::Drawing::Point(16, 396);
+			this->textBox29->Name = L"textBox29";
+			this->textBox29->Size = System::Drawing::Size(100, 22);
+			this->textBox29->TabIndex = 38;
+			// 
+			// label29
+			// 
+			this->label29->AutoSize = true;
+			this->label29->Location = System::Drawing::Point(16, 461);
+			this->label29->Name = L"label29";
+			this->label29->Size = System::Drawing::Size(143, 17);
+			this->label29->TabIndex = 37;
+			this->label29->Text = L"Supprimer un article :";
+			// 
+			// label28
+			// 
+			this->label28->AutoSize = true;
+			this->label28->Location = System::Drawing::Point(17, 440);
+			this->label28->Name = L"label28";
+			this->label28->Size = System::Drawing::Size(888, 17);
+			this->label28->TabIndex = 36;
+			this->label28->Text = L"---------------------------------------------------------------------------------"
+				L"--------------------------------------------------------------------------------"
+				L"---------------";
+			// 
+			// Supp
+			// 
+			this->Supp->Location = System::Drawing::Point(728, 503);
+			this->Supp->Name = L"Supp";
+			this->Supp->Size = System::Drawing::Size(124, 49);
+			this->Supp->TabIndex = 35;
+			this->Supp->Text = L"Supprimer";
+			this->Supp->UseVisualStyleBackColor = true;
+			this->Supp->Click += gcnew System::EventHandler(this, &Gestion_Commande::Supp_Click);
+			// 
+			// label27
+			// 
+			this->label27->AutoSize = true;
+			this->label27->Location = System::Drawing::Point(155, 503);
+			this->label27->Name = L"label27";
+			this->label27->Size = System::Drawing::Size(80, 17);
+			this->label27->TabIndex = 4;
+			this->label27->Text = L"Ref article :";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(14, 503);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(111, 17);
+			this->label16->TabIndex = 3;
+			this->label16->Text = L"Ref commande :";
+			// 
+			// textBox28
+			// 
+			this->textBox28->Location = System::Drawing::Point(158, 536);
+			this->textBox28->Name = L"textBox28";
+			this->textBox28->Size = System::Drawing::Size(100, 22);
+			this->textBox28->TabIndex = 2;
+			// 
+			// textBox17
+			// 
+			this->textBox17->Location = System::Drawing::Point(16, 536);
+			this->textBox17->Name = L"textBox17";
+			this->textBox17->Size = System::Drawing::Size(100, 22);
+			this->textBox17->TabIndex = 1;
+			// 
+			// dataSupp
+			// 
+			this->dataSupp->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataSupp->Location = System::Drawing::Point(17, 12);
+			this->dataSupp->Name = L"dataSupp";
+			this->dataSupp->RowHeadersWidth = 51;
+			this->dataSupp->RowTemplate->Height = 24;
+			this->dataSupp->Size = System::Drawing::Size(885, 305);
+			this->dataSupp->TabIndex = 0;
+			// 
 			// Options
 			// 
 			this->Options->Controls->Add(this->Supprimer);
@@ -708,6 +885,7 @@ namespace Poo {
 			this->Supprimer->TabStop = true;
 			this->Supprimer->Text = L"Supprimer";
 			this->Supprimer->UseVisualStyleBackColor = true;
+			this->Supprimer->CheckedChanged += gcnew System::EventHandler(this, &Gestion_Commande::Supprimer_CheckedChanged);
 			// 
 			// Modifier
 			// 
@@ -1020,6 +1198,8 @@ namespace Poo {
 			this->Controls->Add(this->boxModif);
 			this->Controls->Add(this->Main);
 			this->Controls->Add(this->label1);
+			this->MaximumSize = System::Drawing::Size(1305, 724);
+			this->MinimumSize = System::Drawing::Size(1305, 724);
 			this->Name = L"Gestion_Commande";
 			this->Text = L"Gestion_Commande";
 			this->Main->ResumeLayout(false);
@@ -1029,6 +1209,9 @@ namespace Poo {
 			this->boxAjj->ResumeLayout(false);
 			this->boxAjj->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataAjj))->EndInit();
+			this->boxSupp->ResumeLayout(false);
+			this->boxSupp->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataSupp))->EndInit();
 			this->Options->ResumeLayout(false);
 			this->Options->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->EndInit();
@@ -1037,6 +1220,7 @@ namespace Poo {
 			this->boxModif->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataModif))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1051,20 +1235,24 @@ namespace Poo {
 		Aff->Hide();
 		Ajj->Hide();
 		Modif->Hide();
+		Supp->Hide();
 		Actualiser1->Hide();
 		Actualiser2->Hide();
 		Actualiser3->Hide();
+		Actualiser4->Hide();
 		Vider1->Hide();
 		Vider2->Hide();
 		Vider3->Hide();
+		Vider4->Hide();
 		boxAff->Hide();
 		boxAjj->Hide();
 		boxModif->Hide();
+		boxSupp->Hide();
 	}
 	private: System::Void Actualiser1_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 		SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement,Qt_article, Montant_total_HT, Montant_total_TVA, Montant_total_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande WHERE [Commande].N__Client = [Client].N__Client ", conDataBase);
+		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement,Qt_article, Montant_total_HT, Montant_total_TVA, Montant_total_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande WHERE [Commande].N__Client = [Client].N__Client ORDER BY [Commande].Ref_commande", conDataBase);
 		DataTable^ data = gcnew DataTable();
 		adapter->Fill(data);
 		bindingSource1->DataSource = data;
@@ -1073,7 +1261,7 @@ namespace Poo {
 	private: System::Void Actualiser2_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 		SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, Qt_article, Montant_total_HT, Montant_total_TVA, Montant_total_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande WHERE [Commande].N__Client = [Client].N__Client", conDataBase);
+		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article,[Contient].Nb_article, Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = [Contient].Ref_commande ORDER BY [Commande].Ref_commande", conDataBase);
 		DataTable^ data = gcnew DataTable();
 		adapter->Fill(data);
 		bindingSource2->DataSource = data;
@@ -1082,11 +1270,20 @@ namespace Poo {
 	private: System::Void Actualiser3_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 		SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, Qt_article,Montant_total_HT, Montant_total_TVA, Montant_total_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande WHERE [Commande].N__Client = [Client].N__Client ", conDataBase);
+		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article,[Contient].Nb_article,Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = [Contient].Ref_commande ORDER BY [Commande].Ref_commande" , conDataBase);
 		DataTable^ data = gcnew DataTable();
 		adapter->Fill(data);
 		bindingSource3->DataSource = data;
 		dataModif->DataSource = bindingSource3;
+	}
+	private: System::Void Actualiser4_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
+		SqlConnection^ conDataBase = gcnew SqlConnection(constring);
+		SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article,[Contient].Nb_article,Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = [Contient].Ref_commande ORDER BY [Commande].Ref_commande", conDataBase);
+		DataTable^ data = gcnew DataTable();
+		adapter->Fill(data);
+		bindingSource4->DataSource = data;
+		dataSupp->DataSource = bindingSource4;
 	}
 	private: System::Void Vider1_Click(System::Object^ sender, System::EventArgs^ e) {
 		textBox3->Text = "";
@@ -1119,13 +1316,18 @@ namespace Poo {
 		textBox27->Text = "";
 		textBox23->Text = "";
 	}
+	private: System::Void Vider4_Click(System::Object^ sender, System::EventArgs^ e) {
+		textBox17->Text = "";
+		textBox28->Text = "";
+		textBox29->Text = "";
+	}
 	private: System::Void Aff_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (V == 1) {
 			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 				String^ ref = textBox3->Text;
 				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article, [Contient].Nb_article, Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = '" + ref + "' AND [Commande].Ref_commande = [Contient].Ref_commande", conDataBase);
+				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article, [Contient].Nb_article, Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = '" + ref + "' AND [Commande].Ref_commande = [Contient].Ref_commande ORDER BY [Commande].Ref_commande", conDataBase);
 				conDataBase->Open();
 				SqlDataReader^ myReader = cmdDataBase->ExecuteReader();
 
@@ -1135,7 +1337,7 @@ namespace Poo {
 				}
 				
 				myReader->Close();
-				SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article, [Contient].Nb_article, Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = [Contient].Ref_commande AND [Commande].Ref_commande = '" + ref + "' ", conDataBase);
+				SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT [Commande].Ref_commande, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement, [Contient].Ref_article, [Contient].Nb_article, Montant_HT, Montant_TVA, Montant_TTC, Remise,Remise_2, [Commande].N__Client, Nom_client, Prenom_client FROM Client,Commande,Contient WHERE [Commande].N__Client = [Client].N__Client AND [Commande].Ref_commande = [Contient].Ref_commande AND [Commande].Ref_commande = '" + ref + "' ORDER BY [Commande].Ref_commande", conDataBase);
 				DataTable^ data = gcnew DataTable();
 				data->Clear();
 				adapter->Fill(data);
@@ -1294,19 +1496,22 @@ namespace Poo {
 
 				conDataBase->Open();
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("UPDATE Commande SET Ref_commande = '"+ref+"', Date_livraison = '"+date_livraison+"', Date_d_emission = '"+date_emission+"',Date_solde = '"+date_solde+"',Date_paiement = '"+date_paiement+"',Moyen_paiement = '"+moyen_paiement+"',Refer_article = (SELECT Ref_article FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),Nb_Article = '"+Qt+"',Montant_total_HT = (SELECT (Montant_HT * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),Montant_total_TVA = (SELECT (Montant_TVA * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),Montant_total_TTC = (SELECT (Montant_TTC * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),Remise = (SELECT R1 FROM Client,remise WHERE [Client].Date_naissance = '" + date_emission + "' AND [Client].Nom_client = '" + nom + "' ),Remise_2 = (SELECT R2 FROM Client,remise WHERE [Client].Date_premier_achat = '" + date_emission + "' AND [Client].Nom_client = '" + nom + "'),N__Client = (SELECT N__Client FROM Client WHERE Nom_client = '" + nom + "' AND Prenom_client = '" + prenom + "') WHERE Refer_article = '"+ref_arti+"' ", conDataBase);
+				SqlCommand^ cmdDataBase1 = gcnew SqlCommand("UPDATE Contient SET Ref_article = (SELECT Ref_article FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "') ,Nb_article = '"+Qt+"', montant_HT = (SELECT ([Article].Montant_HT * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),montant_TVA = (SELECT ([Article].Montant_TVA * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "'),montant_TTC = (SELECT ([Article].Montant_TTC * '" + Qt + "') FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "') FROM Commande WHERE [Contient].Ref_commande = '" + ref + "' AND [Contient].Ref_article = '" + ref_arti + "' ", conDataBase);
+				SqlDataReader^ myReader1 = cmdDataBase1->ExecuteReader();
+
+				myReader1->Close();
+				
+				
+				SqlCommand^ cmdDataBase = gcnew SqlCommand("UPDATE Commande SET Qt_article = (SELECT SUM(Nb_article) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "') , Date_livraison = '"+date_livraison+"', Date_d_emission = '"+date_emission+"',Date_solde = '"+date_solde+"',Date_paiement = '"+date_paiement+"',Moyen_paiement = '"+moyen_paiement+"',Montant_total_HT = (SELECT SUM(montant_HT) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'),Montant_total_TVA = (SELECT SUM(montant_TVA) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'),Montant_total_TTC = (SELECT SUM(montant_TTC) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'),Remise = (SELECT R1 FROM Client,remise WHERE [Client].Date_naissance = '" + date_emission + "' AND [Client].Nom_client = '" + nom + "' ),Remise_2 = (SELECT R2 FROM Client,remise WHERE [Client].Date_premier_achat = '" + date_emission + "' AND [Client].Nom_client = '" + nom + "'),N__Client = (SELECT N__Client FROM Client WHERE Nom_client = '" + nom + "' AND Prenom_client = '" + prenom + "') WHERE [Commande].Ref_commande = '" + ref + "' ", conDataBase);
 				SqlDataReader^ myReader = cmdDataBase->ExecuteReader();
 				
 				myReader->Close();
 
 
-				SqlCommand^ cmdDataBase1 = gcnew SqlCommand("UPDATE Contient SET Ref_article = (SELECT Ref_article FROM Article WHERE Nom_article = '" + nomp + "' AND Couleur_l_article = '" + Couleur + "') FROM Commande WHERE [Contient].Ref_commande = '"+ref+"' AND [Contient].Ref_article = '"+ref_arti+"' ", conDataBase);
-				SqlDataReader^ myReader1 = cmdDataBase1->ExecuteReader();
-
-				myReader1->Close();
+				
 
 				conDataBase->Close();
-				MessageBox::Show("Commande ajouté au serveur !");
+				MessageBox::Show("Commande modifié au serveur !");
 			}
 			else {
 			}
@@ -1321,7 +1526,7 @@ namespace Poo {
 			String^ ref_arti = textBox16->Text;
 
 
-			SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT [Client].Nom_client, [Client].Prenom_client, [Article].Nom_article, [Article].Couleur_l_article, [Commande].Nb_article, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement FROM Commande,Article,Client WHERE [Client].N__Client = [Commande].N__Client AND [Commande].Ref_commande = '"+ref_com+"' AND [Article].Ref_article = '"+ref_arti+"' ", conDataBase);
+			SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT [Client].Nom_client, [Client].Prenom_client, [Article].Nom_article, [Article].Couleur_l_article, [Contient].Nb_article, Date_livraison, Date_d_emission, Date_solde, Date_paiement, Moyen_paiement FROM Commande,Article,Client,Contient WHERE [Client].N__Client = [Commande].N__Client AND [Commande].Ref_commande = '"+ref_com+"' AND [Article].Ref_article = '"+ref_arti+"' ", conDataBase);
 			SqlDataReader^ myReader;
 			try {
 
@@ -1349,7 +1554,73 @@ namespace Poo {
 			}
 		}
 	}
+	private: System::Void Supp_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
+				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
+				SqlConnection^ conDataBase2 = gcnew SqlConnection(constring);
 
+				String^ ref = textBox17->Text;
+				String^ ref_arti = textBox28->Text;
+
+				SqlCommand^ cmdDataBase = gcnew SqlCommand("DELETE FROM Contient WHERE Ref_commande = '"+ref+"' AND Ref_article = '"+ref_arti+"' ", conDataBase);
+				SqlDataReader^ myReader;
+				
+				SqlCommand^ cmdDataBase2 = gcnew SqlCommand("UPDATE Commande SET Qt_Article = (SELECT SUM(Nb_article) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'), Montant_total_HT = (SELECT SUM(montant_HT) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'),Montant_total_TVA = (SELECT SUM(montant_TVA) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "'),Montant_total_TTC = (SELECT SUM(montant_TTC) FROM Contient WHERE [Contient].Ref_commande = '" + ref + "') WHERE Ref_commande = '"+ref+"' ", conDataBase);
+				SqlDataReader^ myReader2;
+
+				try {
+
+					conDataBase->Open();
+					myReader = cmdDataBase->ExecuteReader();
+					myReader->Close();
+					myReader2 = cmdDataBase2->ExecuteReader();
+					myReader2->Close();
+					MessageBox::Show("Suppression effectué !");
+					conDataBase->Close();
+				}
+				catch (Exception^ ex) {
+
+					MessageBox::Show(ex->Message);
+
+				}
+			}
+			else {
+			}
+		}
+	private: System::Void Supp2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+			String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
+			SqlConnection^ conDataBase = gcnew SqlConnection(constring);
+			SqlConnection^ conDataBase2 = gcnew SqlConnection(constring);
+
+			String^ ref = textBox29->Text;
+
+			SqlCommand^ cmdDataBase = gcnew SqlCommand("DELETE FROM Contient WHERE Ref_commande = '" + ref + "' ", conDataBase);
+			SqlDataReader^ myReader;
+
+			SqlCommand^ cmdDataBase2 = gcnew SqlCommand("DELETE FROM Commande WHERE Ref_commande = '"+ref+"' ", conDataBase);
+			SqlDataReader^ myReader2;
+
+			try {
+
+				conDataBase->Open();
+				myReader = cmdDataBase->ExecuteReader();
+				myReader->Close();
+				myReader2 = cmdDataBase2->ExecuteReader();
+				myReader2->Close();
+				MessageBox::Show("Suppression effectué !");
+				conDataBase->Close();
+			}
+			catch (Exception^ ex) {
+
+				MessageBox::Show(ex->Message);
+
+			}
+		}
+		else {
+		}
+	}
 	private: System::Void Annuler_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 			this->Close();
@@ -1363,15 +1634,19 @@ private: System::Void Afficher_CheckedChanged(System::Object^ sender, System::Ev
 	Aff->Show();
 	Ajj->Hide();
 	Modif->Hide();
+	Supp->Hide();
 	Actualiser1->Show();
 	Actualiser2->Hide();
 	Actualiser3->Hide();
+	Actualiser4->Hide();
 	Vider1->Show();
-	Vider2->Show();
+	Vider2->Hide();
 	Vider3->Hide();
+	Vider4->Hide();
 	boxAff->Show();
 	boxAjj->Hide();
 	boxModif->Hide();
+	boxSupp->Hide();
 }
 
 private: System::Void Ajouter_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -1379,15 +1654,19 @@ private: System::Void Ajouter_CheckedChanged(System::Object^ sender, System::Eve
 	Ajj->Show();
 	Aff->Hide();
 	Modif->Hide();
+	Supp->Hide();
 	Vider1->Hide();
 	Vider2->Show();
 	Vider3->Hide();
+	Vider4->Hide();
 	Actualiser1->Hide();
 	Actualiser2->Show();
 	Actualiser3->Hide();
+	Actualiser4->Hide();
 	boxAff->Hide();
 	boxAjj->Show();
 	boxModif->Hide();
+	boxSupp->Hide();
 }
 
 private: System::Void Modifier_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -1395,15 +1674,42 @@ private: System::Void Modifier_CheckedChanged(System::Object^ sender, System::Ev
 	Aff->Hide();
 	Ajj->Hide();
 	Modif->Show();
+	Supp->Hide();
 	Vider1->Hide();
 	Vider2->Hide();
 	Vider3->Show();
+	Vider4->Hide();
 	Actualiser1->Hide();
 	Actualiser2->Hide();
 	Actualiser3->Show();
+	Actualiser4->Hide();
 	boxAff->Hide();
 	boxAjj->Hide();
 	boxModif->Show();
+	boxSupp->Hide();
+}
+
+
+
+
+private: System::Void Supprimer_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	Y = 1;
+	Aff->Hide();
+	Ajj->Hide();
+	Modif->Hide();
+	Supp->Show();
+	Vider1->Hide();
+	Vider2->Hide();
+	Vider3->Hide();
+	Vider4->Show();
+	Actualiser1->Hide();
+	Actualiser2->Hide();
+	Actualiser3->Hide();
+	Actualiser4->Show();
+	boxAff->Hide();
+	boxAjj->Hide();
+	boxModif->Hide();
+	boxSupp->Show();
 }
 
 

@@ -24,18 +24,18 @@ namespace Poo {
 	private: System::Windows::Forms::TextBox^ textBox11;
 	private: System::Windows::Forms::TextBox^ textBox10;
 	private: System::Windows::Forms::TextBox^ textBox9;
-	private: System::Windows::Forms::TextBox^ textBox8;
+
 	private: System::Windows::Forms::TextBox^ textBox7;
-	private: System::Windows::Forms::TextBox^ textBox6;
+
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Label^ label10;
-	private: System::Windows::Forms::Label^ label9;
+
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Label^ label7;
+
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
@@ -93,6 +93,7 @@ namespace Poo {
 	private: System::Windows::Forms::Label^ label29;
 	private: System::Windows::Forms::Label^ label30;
 	private: System::Windows::Forms::DataGridView^ dataSupp;
+	private: System::Windows::Forms::Button^ Vider1;
 
 	private: System::Windows::Forms::DataGridView^ dataAjout;
 	public :
@@ -154,6 +155,7 @@ namespace Poo {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Gestion_Stock::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Main = (gcnew System::Windows::Forms::GroupBox());
+			this->Vider1 = (gcnew System::Windows::Forms::Button());
 			this->Supp = (gcnew System::Windows::Forms::Button());
 			this->Actualiser4 = (gcnew System::Windows::Forms::Button());
 			this->boxModif = (gcnew System::Windows::Forms::GroupBox());
@@ -222,18 +224,14 @@ namespace Poo {
 			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -268,6 +266,7 @@ namespace Poo {
 			// 
 			// Main
 			// 
+			this->Main->Controls->Add(this->Vider1);
 			this->Main->Controls->Add(this->Supp);
 			this->Main->Controls->Add(this->Actualiser4);
 			this->Main->Controls->Add(this->boxModif);
@@ -287,6 +286,16 @@ namespace Poo {
 			this->Main->TabIndex = 1;
 			this->Main->TabStop = false;
 			this->Main->Enter += gcnew System::EventHandler(this, &Gestion_Stock::Main_Enter);
+			// 
+			// Vider1
+			// 
+			this->Vider1->Location = System::Drawing::Point(938, 346);
+			this->Vider1->Name = L"Vider1";
+			this->Vider1->Size = System::Drawing::Size(114, 47);
+			this->Vider1->TabIndex = 20;
+			this->Vider1->Text = L"Vider";
+			this->Vider1->UseVisualStyleBackColor = true;
+			this->Vider1->Click += gcnew System::EventHandler(this, &Gestion_Stock::Vider1_Click);
 			// 
 			// Supp
 			// 
@@ -884,18 +893,14 @@ namespace Poo {
 			this->boxAjout->Controls->Add(this->textBox11);
 			this->boxAjout->Controls->Add(this->textBox10);
 			this->boxAjout->Controls->Add(this->textBox9);
-			this->boxAjout->Controls->Add(this->textBox8);
 			this->boxAjout->Controls->Add(this->textBox7);
-			this->boxAjout->Controls->Add(this->textBox6);
 			this->boxAjout->Controls->Add(this->textBox5);
 			this->boxAjout->Controls->Add(this->textBox4);
 			this->boxAjout->Controls->Add(this->textBox3);
 			this->boxAjout->Controls->Add(this->label12);
 			this->boxAjout->Controls->Add(this->label11);
 			this->boxAjout->Controls->Add(this->label10);
-			this->boxAjout->Controls->Add(this->label9);
 			this->boxAjout->Controls->Add(this->label8);
-			this->boxAjout->Controls->Add(this->label7);
 			this->boxAjout->Controls->Add(this->label6);
 			this->boxAjout->Controls->Add(this->label5);
 			this->boxAjout->Controls->Add(this->label4);
@@ -915,7 +920,7 @@ namespace Poo {
 			// 
 			// textBox10
 			// 
-			this->textBox10->Location = System::Drawing::Point(501, 480);
+			this->textBox10->Location = System::Drawing::Point(169, 479);
 			this->textBox10->Name = L"textBox10";
 			this->textBox10->Size = System::Drawing::Size(100, 22);
 			this->textBox10->TabIndex = 17;
@@ -927,26 +932,12 @@ namespace Poo {
 			this->textBox9->Size = System::Drawing::Size(100, 22);
 			this->textBox9->TabIndex = 16;
 			// 
-			// textBox8
-			// 
-			this->textBox8->Location = System::Drawing::Point(325, 480);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(100, 22);
-			this->textBox8->TabIndex = 15;
-			// 
 			// textBox7
 			// 
 			this->textBox7->Location = System::Drawing::Point(325, 390);
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(100, 22);
 			this->textBox7->TabIndex = 14;
-			// 
-			// textBox6
-			// 
-			this->textBox6->Location = System::Drawing::Point(169, 480);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(100, 22);
-			this->textBox6->TabIndex = 13;
 			// 
 			// textBox5
 			// 
@@ -981,7 +972,7 @@ namespace Poo {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(498, 438);
+			this->label11->Location = System::Drawing::Point(166, 437);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(204, 17);
 			this->label11->TabIndex = 8;
@@ -996,15 +987,6 @@ namespace Poo {
 			this->label10->TabIndex = 7;
 			this->label10->Text = L"Nature :";
 			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(328, 438);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(98, 17);
-			this->label9->TabIndex = 6;
-			this->label9->Text = L"Montant TVA :";
-			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
@@ -1013,15 +995,6 @@ namespace Poo {
 			this->label8->Size = System::Drawing::Size(70, 17);
 			this->label8->TabIndex = 5;
 			this->label8->Text = L"Quantité :";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(169, 440);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(98, 17);
-			this->label7->TabIndex = 4;
-			this->label7->Text = L"Montant TTC :";
 			// 
 			// label6
 			// 
@@ -1074,7 +1047,6 @@ namespace Poo {
 			this->MinimumSize = System::Drawing::Size(1294, 670);
 			this->Name = L"Gestion_Stock";
 			this->Text = L"Gestion_Stock";
-			this->Load += gcnew System::EventHandler(this, &Gestion_Stock::Gestion_Stock_Load);
 			this->Main->ResumeLayout(false);
 			this->boxModif->ResumeLayout(false);
 			this->boxModif->PerformLayout();
@@ -1104,6 +1076,7 @@ namespace Poo {
 		Ajj->Hide();
 		Modif->Hide();
 		Supp->Hide();
+		Vider1->Hide();
 		Actualiser1->Hide();
 		Actualiser2->Hide();
 		Actualiser3->Hide();
@@ -1165,7 +1138,36 @@ namespace Poo {
 		else {
 		}
 	}
-	
+	private: System::Void Vider1_Click(System::Object^ sender, System::EventArgs^ e) {
+		textBox1->Text = "";
+		textBox2->Text = "";
+		textBox3->Text = "";
+		textBox4->Text = "";
+		textBox5->Text = "";
+		textBox7->Text = "";
+		textBox9->Text = "";
+		textBox10->Text = "";
+		textBox11->Text = "";
+		textBox12->Text = "";
+		textBox13->Text = "";
+		textBox14->Text = "";
+		textBox15->Text = "";
+		textBox16->Text = "";
+		textBox17->Text = "";
+		textBox18->Text = "";
+		textBox19->Text = "";
+		textBox20->Text = "";
+		textBox21->Text = "";
+		textBox22->Text = "";
+		textBox23->Text = "";
+		textBox24->Text = "";
+		textBox25->Text = "";
+		textBox26->Text = "";
+		textBox27->Text = "";
+		textBox28->Text = "";
+		textBox29->Text = "";
+
+	}
 	private: System::Void Aff_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (V == 1) {
 			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
@@ -1204,15 +1206,13 @@ namespace Poo {
 				String^ ref = textBox3->Text;
 				String^ nom = textBox5->Text;
 				String^ quantité = textBox7->Text;
-				String^ montant_HT = textBox4->Text;
-				String^ montant_TTC = textBox6->Text;
-				String^ montant_TVA = textBox8->Text;
+				String^ montant_HT = (textBox4->Text);
 				String^ nature = textBox9->Text;
 				String^ couleur = textBox11->Text;
 				String^ seuil = textBox10->Text;
 
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT Article (Ref_article,nom_article,Qt_article,Montant_HT,Montant_TVA,Montant_TTC,Seuil_reapprovisionnement,Nature_L_article,Couleur_l_article) VALUES('" + ref + "', '" + nom + "', '" + quantité + "', '" + montant_HT + "', '" + montant_TVA + "', '" + montant_TTC + "', '" + seuil + "', '" + nature + "', '" + couleur + "'); ", conDataBase);
+				SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT Article (Ref_article,nom_article,Qt_article,Montant_HT,Montant_TVA,Montant_TTC,Seuil_reapprovisionnement,Nature_L_article,Couleur_l_article) VALUES('" + ref + "', '" + nom + "', '" + quantité + "', '" + montant_HT + "', '"+montant_HT+"' * 19/100 , '"+montant_HT+"' + '"+montant_HT+"' * 19/100 , '" + seuil + "', '" + nature + "', '" + couleur + "') ;", conDataBase);
 				SqlDataReader^ myReader;
 				try {
 
@@ -1381,8 +1381,7 @@ namespace Poo {
 			}
 		}
 	}
-	private: System::Void Vider_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	
 
 private: System::Void Afficher_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	V = 1;
@@ -1390,6 +1389,7 @@ private: System::Void Afficher_CheckedChanged(System::Object^ sender, System::Ev
 	Ajj->Hide();
 	Modif->Hide();
 	Supp->Hide();
+	Vider1->Show();
 	Actualiser1->Show();
 	Actualiser2->Hide();
 	Actualiser3->Hide();
@@ -1406,6 +1406,7 @@ private: System::Void Ajouter_CheckedChanged(System::Object^ sender, System::Eve
 	Aff->Hide();
 	Modif->Hide();
 	Supp->Hide();
+	Vider1->Show();
 	Actualiser1->Hide();
 	Actualiser2->Show();
 	Actualiser3->Hide();
@@ -1422,6 +1423,7 @@ private: System::Void Modifier_CheckedChanged(System::Object^ sender, System::Ev
 	Ajj->Hide();
 	Aff->Hide();
 	Supp->Hide();
+	Vider1->Show();
 	Actualiser1->Hide();
 	Actualiser2->Hide();
 	Actualiser3->Show();
@@ -1438,6 +1440,7 @@ private: System::Void Supprimer_CheckedChanged(System::Object^ sender, System::E
 	Modif->Hide();
 	Ajj->Hide();
 	Aff->Hide();
+	Vider1->Show();
 	Actualiser1->Hide();
 	Actualiser2->Hide();
 	Actualiser3->Hide();
@@ -1449,7 +1452,6 @@ private: System::Void Supprimer_CheckedChanged(System::Object^ sender, System::E
 }
 
 
-private: System::Void Gestion_Stock_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+
 };
 }
