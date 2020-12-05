@@ -1,5 +1,7 @@
 #pragma once
 
+#include "G_client.h"
+
 namespace Poo {
 
 	using namespace System;
@@ -139,6 +141,7 @@ namespace Poo {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Gestion_Client::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Main = (gcnew System::Windows::Forms::GroupBox());
+			this->Vider = (gcnew System::Windows::Forms::Button());
 			this->Supp = (gcnew System::Windows::Forms::Button());
 			this->Actualiser4 = (gcnew System::Windows::Forms::Button());
 			this->Modif = (gcnew System::Windows::Forms::Button());
@@ -211,7 +214,6 @@ namespace Poo {
 			this->textBox14 = (gcnew System::Windows::Forms::TextBox());
 			this->dataModif = (gcnew System::Windows::Forms::DataGridView());
 			this->bindingSource4 = (gcnew System::Windows::Forms::BindingSource(this->components));
-			this->Vider = (gcnew System::Windows::Forms::Button());
 			this->Main->SuspendLayout();
 			this->BoxAj->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataAj))->BeginInit();
@@ -260,6 +262,16 @@ namespace Poo {
 			this->Main->TabIndex = 1;
 			this->Main->TabStop = false;
 			this->Main->Enter += gcnew System::EventHandler(this, &Gestion_Client::Main_Enter);
+			// 
+			// Vider
+			// 
+			this->Vider->Location = System::Drawing::Point(938, 340);
+			this->Vider->Name = L"Vider";
+			this->Vider->Size = System::Drawing::Size(114, 48);
+			this->Vider->TabIndex = 29;
+			this->Vider->Text = L"Vider";
+			this->Vider->UseVisualStyleBackColor = true;
+			this->Vider->Click += gcnew System::EventHandler(this, &Gestion_Client::Vider_Click);
 			// 
 			// Supp
 			// 
@@ -911,16 +923,6 @@ namespace Poo {
 			this->dataModif->Size = System::Drawing::Size(896, 326);
 			this->dataModif->TabIndex = 0;
 			// 
-			// Vider
-			// 
-			this->Vider->Location = System::Drawing::Point(938, 340);
-			this->Vider->Name = L"Vider";
-			this->Vider->Size = System::Drawing::Size(114, 48);
-			this->Vider->TabIndex = 29;
-			this->Vider->Text = L"Vider";
-			this->Vider->UseVisualStyleBackColor = true;
-			this->Vider->Click += gcnew System::EventHandler(this, &Gestion_Client::Vider_Click);
-			// 
 			// Gestion_Client
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -928,6 +930,7 @@ namespace Poo {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1276, 623);
+			this->ControlBox = false;
 			this->Controls->Add(this->BoxModif);
 			this->Controls->Add(this->Main);
 			this->Controls->Add(this->label1);
@@ -1051,23 +1054,15 @@ namespace Poo {
 				String^ prenom = textBox2->Text;
 				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Client WHERE Nom_Client = '" + nom + "' AND Prenom_Client = '" + prenom + "' ", conDataBase);
+				
 				conDataBase->Open();
-				SqlDataReader^ myReader = cmdDataBase->ExecuteReader();
+				
 
 
-				while (myReader->Read()) {
-					textBox1->Text = Convert::ToString(myReader->GetString(1));
-					textBox2->Text = Convert::ToString(myReader->GetString(2));
-				}
+				
+				NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+				Client->afficher(textBox1->Text, textBox2->Text, bindingSource1, dataAff);
 
-				myReader->Close();
-				SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT * FROM Client WHERE Nom_Client = '" + nom + "' AND Prenom_Client = '" + prenom + "' ", conDataBase);
-				DataTable^ data = gcnew DataTable();
-				data->Clear();
-				adapter->Fill(data);
-				bindingSource1->DataSource = data;
-				dataAff->DataSource = bindingSource1;
 			}
 			else {
 			}
@@ -1093,7 +1088,7 @@ namespace Poo {
 						adresseFac->StartsWith("Chlef,") || adresseFac->StartsWith("Souk Ahras,") || adresseFac->StartsWith("Medea,") || adresseFac->StartsWith("El Eulma,") || adresseFac->StartsWith("Touggourt,") ||
 						adresseFac->StartsWith("Ghardaia,") || adresseFac->StartsWith("Saida,") || adresseFac->StartsWith("Laghouat,") || adresseFac->StartsWith("M'Sila,") || adresseFac->StartsWith("Jijel,") ||
 						adresseFac->StartsWith("Relizane,") || adresseFac->StartsWith("Guelma,") || adresseFac->StartsWith("Ain Beida,") || adresseFac->StartsWith("Khenchela,") || adresseFac->StartsWith("Bousaada,") ||
-						adresseFac->StartsWith("Mascara,") || adresseFac->StartsWith("Tizi Ouzou,")) {
+						adresseFac->StartsWith("Mascara,") || adresseFac->StartsWith("Tizi Ouzou,") || adresseFac->StartsWith("Bouira,")) {
 
 						if (adresseLiv->StartsWith("Alger,") || adresseLiv->StartsWith("Oran,") || adresseLiv->StartsWith("Constantine,") || adresseLiv->StartsWith("Annaba,") || adresseLiv->StartsWith("Blida,") ||
 							adresseLiv->StartsWith("Batna,") || adresseLiv->StartsWith("Djelfa,") || adresseLiv->StartsWith("Setif,") || adresseLiv->StartsWith("Sidi bel Abbes,") || adresseLiv->StartsWith("Biskra,") ||
@@ -1102,15 +1097,15 @@ namespace Poo {
 							adresseLiv->StartsWith("Chlef,") || adresseLiv->StartsWith("Souk Ahras,") || adresseLiv->StartsWith("Medea,") || adresseLiv->StartsWith("El Eulma,") || adresseLiv->StartsWith("Touggourt,") ||
 							adresseLiv->StartsWith("Ghardaia,") || adresseLiv->StartsWith("Saida,") || adresseLiv->StartsWith("Laghouat,") || adresseLiv->StartsWith("M'Sila,") || adresseLiv->StartsWith("Jijel,") ||
 							adresseLiv->StartsWith("Relizane,") || adresseLiv->StartsWith("Guelma,") || adresseLiv->StartsWith("Ain Beida,") || adresseLiv->StartsWith("Khenchela,") || adresseLiv->StartsWith("Bousaada,") ||
-							adresseLiv->StartsWith("Mascara,") || adresseLiv->StartsWith("Tizi Ouzou,")) {
+							adresseLiv->StartsWith("Mascara,") || adresseLiv->StartsWith("Tizi Ouzou,") || adresseFac->StartsWith("Bouira,")) {
 
 
-							SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT INTO Client (Nom_client,Prenom_client,Date_naissance,Date_premier_achat,Adresse_Facturation,Adresse_Livraison) VALUES('" + nom + "', '" + prenom + "', '" + date_anniv + "', '" + date_achat + "', '" + adresseFac + "', '" + adresseLiv + "'); ", conDataBase);
-							SqlDataReader^ myReader;
+							
 							try {
 
 								conDataBase->Open();
-								myReader = cmdDataBase->ExecuteReader();
+								NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+								Client->ajouter(textBox3->Text, textBox4->Text, textBox5->Text, textBox7->Text, textBox6->Text, textBox8->Text);
 								MessageBox::Show("Client ajouté au serveur !");
 								conDataBase->Close();
 							}
@@ -1147,12 +1142,13 @@ namespace Poo {
 				String^ date_anniv = textBox12->Text;
 				String^ date_achat = textBox10->Text;
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("UPDATE Client SET Nom_client ='" + nom + "',Prenom_client = '" + prenom + "',Date_naissance = '" + date_anniv + "',Date_premier_achat = '" + date_achat + "',Adresse_Facturation = '" + adresse_fact + "',Adresse_Livraison = '" + adresse_liv + "' WHERE N__Client = '" + Int32::Parse(textBox15->Text) + "'; ", conDataBase);
-				SqlDataReader^ myReader;
+				
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+					Client->modifier(Int32::Parse(textBox15->Text),textBox14->Text, textBox13->Text, textBox12->Text, textBox10->Text, textBox11->Text, textBox9->Text);
 					MessageBox::Show("Modification effectué !");
 					conDataBase->Close();
 				}
@@ -1176,21 +1172,14 @@ namespace Poo {
 		int Id = Int32::Parse(textBox15->Text);
 
 
-		SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Client WHERE (N__Client) = '"+Id+"'", conDataBase);
-		SqlDataReader^ myReader;
+		
 		try {
 
 			conDataBase->Open();
-			myReader = cmdDataBase->ExecuteReader();
-			while (myReader->Read())
-			{
-				textBox14->Text = myReader->GetString(1);
-				textBox13->Text = myReader->GetString(2);
-				textBox12->Text = Convert::ToString(myReader->GetDateTime(3));
-				textBox10->Text = Convert::ToString(myReader->GetDateTime(4));
-				textBox11->Text = myReader->GetString(5);
-				textBox9->Text = myReader->GetString(6);
-			}
+			
+			NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+			Client->voir(Id, textBox14, textBox13, textBox12, textBox10, textBox11, textBox9);
+			
 			conDataBase->Close();
 			MessageBox::Show("Voici le client !");
 		}
@@ -1213,12 +1202,12 @@ namespace Poo {
 
 				int Id = Int32::Parse(textBox22->Text);
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("DELETE FROM Client WHERE N__Client ='" + Id + "' ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+					Client->supprimer(Id);
 					MessageBox::Show("Suppression effectué !");
 					conDataBase->Close();
 				}
@@ -1241,21 +1230,13 @@ namespace Poo {
 				int Id = Int32::Parse(textBox22->Text);
 
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Client WHERE (N__Client) = '" + Id + "'", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
-					while (myReader->Read())
-					{
-						textBox21->Text = myReader->GetString(1);
-						textBox20->Text = myReader->GetString(2);
-						textBox19->Text = Convert::ToString(myReader->GetDateTime(3));
-						textBox17->Text = Convert::ToString(myReader->GetDateTime(4));
-						textBox18->Text = myReader->GetString(5);
-						textBox16->Text = myReader->GetString(6);
-					}
+					
+					NS_SVC::G_Client^ Client = gcnew NS_SVC::G_Client();
+					Client->voir2(Id, textBox21, textBox20, textBox19, textBox17, textBox18, textBox16);
 					conDataBase->Close();
 					MessageBox::Show("Voici le client !");
 				}

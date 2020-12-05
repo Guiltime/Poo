@@ -381,6 +381,7 @@ namespace Poo {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1287, 677);
+			this->ControlBox = false;
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->Main);
 			this->MaximumSize = System::Drawing::Size(1305, 724);

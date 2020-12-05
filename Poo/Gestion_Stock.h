@@ -1,4 +1,5 @@
 #pragma once
+#include "G_stock.h"
 
 namespace Poo {
 
@@ -345,16 +346,7 @@ namespace Poo {
 			this->boxModif->TabIndex = 7;
 			this->boxModif->TabStop = false;
 			// 
-			// Voir
-			// 
-			this->Voir->Location = System::Drawing::Point(796, 410);
-			this->Voir->Name = L"Voir";
-			this->Voir->Size = System::Drawing::Size(71, 68);
-			this->Voir->TabIndex = 37;
-			this->Voir->Text = L"Voir";
-			this->Voir->UseVisualStyleBackColor = true;
-			this->Voir->Click += gcnew System::EventHandler(this, &Gestion_Stock::Voir_Click);
-			// 
+			 
 			// textBox12
 			// 
 			this->textBox12->Location = System::Drawing::Point(650, 375);
@@ -536,16 +528,6 @@ namespace Poo {
 			this->boxSupp->Size = System::Drawing::Size(908, 515);
 			this->boxSupp->TabIndex = 19;
 			this->boxSupp->TabStop = false;
-			// 
-			// Voir2
-			// 
-			this->Voir2->Location = System::Drawing::Point(796, 410);
-			this->Voir2->Name = L"Voir2";
-			this->Voir2->Size = System::Drawing::Size(71, 58);
-			this->Voir2->TabIndex = 37;
-			this->Voir2->Text = L"Voir";
-			this->Voir2->UseVisualStyleBackColor = true;
-			this->Voir2->Click += gcnew System::EventHandler(this, &Gestion_Stock::Voir2_Click);
 			// 
 			// textBox21
 			// 
@@ -1040,6 +1022,7 @@ namespace Poo {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1276, 623);
+			this->ControlBox = false;
 			this->Controls->Add(this->boxAjout);
 			this->Controls->Add(this->Main);
 			this->Controls->Add(this->label1);
@@ -1175,23 +1158,15 @@ namespace Poo {
 				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
 				String^ ref = textBox1->Text;
 				String^ nom = textBox2->Text;
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Article WHERE Ref_Article = '" + ref + "' OR Nom_article = '" + nom + "' ", conDataBase);
+			
+
 				conDataBase->Open();
-				SqlDataReader^ myReader = cmdDataBase->ExecuteReader();
+				
+
+				NS_SVC::G_Stock^ Stock = gcnew NS_SVC::G_Stock();
+				Stock->afficher(textBox2->Text, textBox1->Text, bindingSource1, dataAffiche);
 
 
-				while (myReader->Read()) {
-					textBox1->Text = Convert::ToString(myReader->GetString(0));
-					textBox2->Text = Convert::ToString(myReader->GetString(1));
-				}
-
-				myReader->Close();
-				SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT * FROM Article WHERE Ref_article = '" + ref + "' OR Nom_article = '" + nom + "' ", conDataBase);
-				DataTable^ data = gcnew DataTable();
-				data->Clear();
-				adapter->Fill(data);
-				bindingSource1->DataSource = data;
-				dataAffiche->DataSource = bindingSource1;
 			}
 			else {
 			}
@@ -1205,19 +1180,22 @@ namespace Poo {
 
 				String^ ref = textBox3->Text;
 				String^ nom = textBox5->Text;
-				String^ quantité = textBox7->Text;
+				String^  quantité = textBox7->Text;
 				String^ montant_HT = (textBox4->Text);
 				String^ nature = textBox9->Text;
 				String^ couleur = textBox11->Text;
 				String^ seuil = textBox10->Text;
 
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT Article (Ref_article,nom_article,Qt_article,Montant_HT,Montant_TVA,Montant_TTC,Seuil_reapprovisionnement,Nature_L_article,Couleur_l_article) VALUES('" + ref + "', '" + nom + "', '" + quantité + "', '" + montant_HT + "', '"+montant_HT+"' * 19/100 , '"+montant_HT+"' + '"+montant_HT+"' * 19/100 , '" + seuil + "', '" + nature + "', '" + couleur + "') ;", conDataBase);
-				SqlDataReader^ myReader;
+
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_Stock^ Stock = gcnew NS_SVC::G_Stock();
+					Stock->ajouter(textBox3->Text, textBox5->Text, textBox7->Text, textBox4->Text, textBox10->Text, textBox9->Text, textBox11->Text);
+
 					MessageBox::Show("Article ajouté au serveur !");
 					conDataBase->Close();
 				}
@@ -1248,12 +1226,14 @@ namespace Poo {
 				String^ couleur = textBox12->Text;
 				String^ seuil = textBox13->Text;
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("UPDATE Article SET Ref_article ='" + ref + "',nom_article = '" + nom + "',Qt_article = '" + quantité + "',Montant_HT = '" + montant_HT + "',Montant_TVA = '" + montant_TVA + "',Montant_TTC = '" + montant_TTC + "', Seuil_reapprovisionnement = '" + seuil + "', Nature_L_article = '" + nature + "', Couleur_l_article = '" + couleur + "' WHERE Ref_article = '" + ref + "'; ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_Stock^ Stock = gcnew NS_SVC::G_Stock();
+					Stock->modifier(textBox20->Text, textBox18->Text, textBox16->Text, textBox19->Text, textBox15->Text, textBox17->Text, textBox13->Text, textBox14->Text, textBox12->Text);
+
 					MessageBox::Show("Modification effectué !");
 					conDataBase->Close();
 				}
@@ -1277,12 +1257,14 @@ namespace Poo {
 				String^ ref = textBox29->Text;
 				String^ nom = textBox27->Text;
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("DELETE FROM Article WHERE Ref_article ='" + ref + "' OR Nom_article = '" + nom+ "' ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_Stock^ Stock = gcnew NS_SVC::G_Stock();
+					Stock->supprimer(textBox29->Text,textBox27->Text);
+
 					MessageBox::Show("Suppression effectué !");
 					conDataBase->Close();
 				}
@@ -1297,90 +1279,7 @@ namespace Poo {
 		}
 	}
 
-	private: System::Void Voir_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (X == 1) {
-			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
-				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-
-				String^ ref = textBox20->Text;
-				String^ nom = textBox18->Text;
-
-
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Article WHERE (Ref_article) = '" + ref + "' OR Nom_article = '" + nom + "' " , conDataBase);
-				SqlDataReader^ myReader;
-				try {
-
-					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
-					while (myReader->Read())
-					{
-						textBox20->Text = myReader->GetString(0);
-						textBox18->Text = myReader->GetString(1);
-						textBox16->Text = Convert::ToString(myReader->GetInt32(2));
-						textBox19->Text = Convert::ToString(myReader->GetDouble(3));
-						textBox15->Text = Convert::ToString(myReader->GetDouble(4));
-						textBox17->Text = Convert::ToString(myReader->GetDouble(5));
-						textBox13->Text = Convert::ToString(myReader->GetInt32(6));
-						textBox14->Text = myReader->GetString(7);
-						textBox12->Text = myReader->GetString(8);
-					}
-
-					conDataBase->Close();
-					MessageBox::Show("Voici le client !");
-				}
-				catch (Exception^ ex) {
-
-					MessageBox::Show(ex->Message);
-
-				}
-			}
-			else {
-			}
-		}
-	}
-	private: System::Void Voir2_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (Y == 1) {
-			if (MessageBox::Show("Etes-vous sûr de votre choix ?", "Warning", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
-				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
-				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-
-				String^ ref = textBox29->Text;
-				String^ nom = textBox27->Text;
-
-
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Article WHERE (Ref_article) = '" + ref + "' OR Nom_article = '" + nom + "' ", conDataBase);
-				SqlDataReader^ myReader;
-				try {
-
-					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
-					while (myReader->Read())
-					{
-						textBox29->Text = myReader->GetString(0);
-						textBox27->Text = myReader->GetString(1);
-						textBox25->Text = Convert::ToString(myReader->GetInt32(2));
-						textBox28->Text = Convert::ToString(myReader->GetDouble(3));
-						textBox24->Text = Convert::ToString(myReader->GetDouble(4));
-						textBox26->Text = Convert::ToString(myReader->GetDouble(5));
-						textBox22->Text = Convert::ToString(myReader->GetInt32(6));
-						textBox23->Text = myReader->GetString(7);
-						textBox21->Text = myReader->GetString(8);
-					}
-
-					conDataBase->Close();
-					MessageBox::Show("Voici le client !");
-				}
-				catch (Exception^ ex) {
-
-					MessageBox::Show(ex->Message);
-
-				}
-			}
-			else {
-			}
-		}
-	}
+	
 	
 
 private: System::Void Afficher_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {

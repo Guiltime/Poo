@@ -127,6 +127,10 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CAD.h" />
+    <ClInclude Include="CL_client.h" />
+    <ClInclude Include="CL_personnel.h" />
+    <ClInclude Include="CL_stock.h" />
     <ClInclude Include="Gestion_Client.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -142,6 +146,9 @@
     <ClInclude Include="Gestion_Stock.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="G_client.h" />
+    <ClInclude Include="G_personnel.h" />
+    <ClInclude Include="G_stock.h" />
     <ClInclude Include="Interface.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -153,11 +160,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="CAD.cpp" />
+    <ClCompile Include="CL_client.cpp" />
+    <ClCompile Include="CL_personnel.cpp" />
+    <ClCompile Include="CL_stock.cpp" />
     <ClCompile Include="Gestion_Client.cpp" />
     <ClCompile Include="Gestion_Commande.cpp" />
     <ClCompile Include="Gestion_Personnel.cpp" />
     <ClCompile Include="Gestion_Statistique.cpp" />
     <ClCompile Include="Gestion_Stock.cpp" />
+    <ClCompile Include="G_client.cpp" />
+    <ClCompile Include="G_personnel.cpp" />
+    <ClCompile Include="G_stock.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

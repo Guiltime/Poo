@@ -1195,6 +1195,7 @@ namespace Poo {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(1287, 677);
+			this->ControlBox = false;
 			this->Controls->Add(this->boxModif);
 			this->Controls->Add(this->Main);
 			this->Controls->Add(this->label1);

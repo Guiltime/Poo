@@ -1,5 +1,7 @@
 #pragma once
 
+#include "G_personnel.h"
+
 namespace Poo {
 
 	using namespace System;
@@ -1074,6 +1076,7 @@ namespace Poo {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1321, 652);
+			this->ControlBox = false;
 			this->Controls->Add(this->boxSupp);
 			this->Controls->Add(this->Main);
 			this->Controls->Add(this->label1);
@@ -1223,24 +1226,19 @@ namespace Poo {
 				String^ prenom = textBox2->Text;
 				String^ constring = "Data Source=(local);Initial Catalog=POO;Integrated Security=True";
 				SqlConnection^ conDataBase = gcnew SqlConnection(constring);
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT ISNULL(Nom_personnel,0), ISNULL(Prenom_personnel,0), ISNULL(Id_Personnel_Superviser,0) FROM Personnel WHERE Nom_personnel = '" + nom + "' OR Prenom_personnel = '" + prenom + "' ", conDataBase);
+				
 				conDataBase->Open();
-				SqlDataReader^ myReader = cmdDataBase->ExecuteReader();
+				
+				NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+				Personnel->afficher1(nom,prenom,textBox1, textBox2,textBox7);
+				
+				
+								
+				
+			
+				Personnel->afficher2(nom, prenom, bindingSource1, dataAff);
 
 
-				while (myReader->Read()) {
-					textBox1->Text = myReader->GetString(0);
-					textBox2->Text = myReader->GetString(1);
-					textBox7->Text = Convert::ToString(myReader->GetInt32(2));
-				}
-
-				myReader->Close();
-				SqlDataAdapter^ adapter = gcnew SqlDataAdapter("SELECT * FROM Personnel WHERE Nom_personnel = '" + nom + "' OR Prenom_personnel = '" + prenom + "' ", conDataBase);
-				DataTable^ data = gcnew DataTable();
-				data->Clear();
-				adapter->Fill(data);
-				bindingSource1->DataSource = data;
-				dataAff->DataSource = bindingSource1;
 				AffOui->Checked = false;
 				AffNon->Checked = true;
 				if (Convert::ToInt32(textBox7->Text) != 0) {
@@ -1260,17 +1258,15 @@ namespace Poo {
 
 			int Id = Int32::Parse(textBox7->Text);
 
-			SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT Nom_personnel, Prenom_personnel FROM Personnel WHERE Id_Personnel = '" + Id + "'", conDataBase);
-			SqlDataReader^ myReader;
+			
 			try {
 
 				conDataBase->Open();
-				myReader = cmdDataBase->ExecuteReader();
-				while (myReader->Read())
-				{
-					textBox5->Text = myReader->GetString(0);
-					textBox6->Text = myReader->GetString(1);
-				}
+				
+				NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+				Personnel->afficher3(Id, textBox5, textBox6);
+
+
 				conDataBase->Close();
 			}
 			catch (Exception^ ex) {
@@ -1296,12 +1292,14 @@ namespace Poo {
 				String^ date_embauche = textBox4->Text;
 
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("INSERT INTO Personnel (Nom_personnel,Prenom_personnel,Adresse_residence,Date_embauche,Id_Personnel_Superviser) VALUES('" + nom + "', '" + prenom + "', '" + adresse_rd + "', '" + date_embauche + "', (SELECT Id_Personnel FROM Personnel WHERE Nom_personnel = '"+Pnom+"' AND Prenom_personnel = '"+Pprenom+"')); ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+					Personnel->ajouter(nom,prenom,Pnom,Pprenom,adresse_rd,date_embauche);
+
 					MessageBox::Show("Personnel ajouté au serveur !");
 					conDataBase->Close();
 				}
@@ -1328,12 +1326,14 @@ namespace Poo {
 				String^ Pnom = textBox12->Text;
 				String^ Pprenom = textBox13->Text;
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("UPDATE Personnel SET Nom_personnel ='" + nom + "',Prenom_personnel = '" + prenom + "',Adresse_residence = '" + adresse_rd + "',Date_embauche = '" + date_embauche + "',Id_Personnel_Superviser = (SELECT Id_Personnel FROM Personnel WHERE Nom_personnel = '"+Pnom+"' AND Prenom_personnel = '"+Pprenom+"') WHERE Nom_personnel = '"+nom+"' AND Prenom_personnel = '"+prenom+"' ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+					Personnel->modifier(textBox17->Text, textBox15->Text, textBox12->Text, textBox13->Text, textBox14->Text, textBox16->Text);
+
 					MessageBox::Show("Modification effectué !");
 					conDataBase->Close();
 				}
@@ -1362,19 +1362,13 @@ namespace Poo {
 			String^ prenom = textBox15->Text;
 
 
-			SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Personnel WHERE Nom_personnel = '" + nom + "' AND Prenom_personnel = '" + prenom + "' ", conDataBase);
-			SqlDataReader^ myReader;
 			try {
 
 				conDataBase->Open();
-				myReader = cmdDataBase->ExecuteReader();
-				while (myReader->Read())
-				{
-					textBox17->Text = myReader->GetString(1);
-					textBox15->Text = myReader->GetString(2);
-					textBox14->Text = myReader->GetString(3);
-					textBox16->Text = Convert::ToString(myReader->GetDateTime(4));
-				}
+				
+				NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+				Personnel->voir(textBox17->Text,textBox15->Text,textBox17,textBox15, textBox14, textBox16);
+
 				conDataBase->Close();
 			}
 			catch (Exception^ ex) {
@@ -1393,12 +1387,14 @@ namespace Poo {
 				String^ nom = textBox23->Text;
 				String^ prenom = textBox21->Text;
 
-				SqlCommand^ cmdDataBase = gcnew SqlCommand("DELETE FROM Personnel WHERE Nom_personnel ='" + nom + "' AND Prenom_personnel ='"+prenom+"' ", conDataBase);
-				SqlDataReader^ myReader;
+				
 				try {
 
 					conDataBase->Open();
-					myReader = cmdDataBase->ExecuteReader();
+					
+					NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+					Personnel->supprimer(textBox23->Text, textBox21->Text);
+
 					MessageBox::Show("Suppression effectué !");
 					conDataBase->Close();
 				}
@@ -1421,19 +1417,15 @@ namespace Poo {
 			String^ prenom = textBox21->Text;
 
 
-			SqlCommand^ cmdDataBase = gcnew SqlCommand("SELECT * FROM Personnel WHERE Nom_personnel = '" + nom + "' AND Prenom_personnel = '" + prenom + "' ", conDataBase);
-			SqlDataReader^ myReader;
+			
 			try {
 
 				conDataBase->Open();
-				myReader = cmdDataBase->ExecuteReader();
-				while (myReader->Read())
-				{
-					textBox23->Text = myReader->GetString(1);
-					textBox21->Text = myReader->GetString(2);
-					textBox20->Text = myReader->GetString(3);
-					textBox22->Text = Convert::ToString(myReader->GetDateTime(4));
-				}
+				
+				
+				NS_SVC::G_personnel^ Personnel = gcnew NS_SVC::G_personnel();
+				Personnel->voir2(textBox23->Text, textBox21->Text,textBox23,textBox21, textBox20, textBox22);
+				
 				conDataBase->Close();
 			}
 			catch (Exception^ ex) {
